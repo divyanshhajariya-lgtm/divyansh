@@ -2,6 +2,7 @@ import {
   AlertTriangle,
   BarChart3,
   Bot,
+  Boxes,
   Building2,
   CheckCircle2,
   ChevronRight,
@@ -27,6 +28,7 @@ import { GeminiCopilotPanel } from './components/GeminiCopilotPanel';
 import { OfficerDecisionModal } from './components/OfficerDecisionModal';
 import { RiskAnalyticsCharts } from './components/RiskAnalyticsCharts';
 import { TasksAndContactsModal } from './components/TasksAndContactsModal';
+import { ThreeDReadme } from './components/ThreeDReadme';
 import {
   AuditLogEntry,
   BidSubmission,
@@ -41,7 +43,12 @@ export default function App() {
   const [tasks, setTasks] = useState<OfficerTask[]>([]);
   const [contacts, setContacts] = useState<OfficerContact[]>([]);
   const [activeTab, setActiveTab] = useState<
-    'audit' | 'comparison' | 'copilot' | 'officer-dashboard' | 'tasks'
+    | 'audit'
+    | 'comparison'
+    | 'copilot'
+    | 'officer-dashboard'
+    | 'readme-3d'
+    | 'tasks'
   >('officer-dashboard');
 
   // Modals state
@@ -213,6 +220,14 @@ export default function App() {
             {/* Header Right Actions */}
             <div className="flex items-center gap-2 sm:gap-3">
               <button
+                onClick={() => setActiveTab('readme-3d')}
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-purple-400/40 bg-purple-900/30 text-purple-200 hover:bg-purple-900/50 text-xs font-semibold transition cursor-pointer"
+              >
+                <Boxes className="w-3.5 h-3.5 text-purple-400" />
+                <span>3D Architecture</span>
+              </button>
+
+              <button
                 onClick={() => setShowDigiLockerModal(true)}
                 className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-blue-400/40 bg-blue-900/30 text-blue-200 hover:bg-blue-900/50 text-xs font-semibold transition cursor-pointer"
               >
@@ -319,6 +334,18 @@ export default function App() {
             <span>
               Tasks & Directory ({tasks.filter((t) => !t.completed).length})
             </span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('readme-3d')}
+            className={`py-3 px-3.5 border-b-2 flex items-center gap-2 whitespace-nowrap transition cursor-pointer ${
+              activeTab === 'readme-3d'
+                ? 'border-indigo-500 text-white font-bold'
+                : 'border-transparent text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <Boxes className="w-4 h-4 text-amber-400" />
+            <span>3D System Spec & "Why We Use"</span>
           </button>
         </div>
       </header>
@@ -619,6 +646,9 @@ export default function App() {
             tasks={tasks}
           />
         )}
+
+        {/* TAB 6: 3D README & Tech Stack Justifications */}
+        {activeTab === 'readme-3d' && <ThreeDReadme />}
       </main>
 
       {/* Footer */}
