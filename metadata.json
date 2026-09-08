@@ -1,0 +1,6 @@
+{
+  "name": "GeM-Verify",
+  "description": "AI-Powered Integrated Bid Compliance Verification Platform for GeM procurement (CPCL / MoPNG) with DigiLocker authentication, registry cross-checks, and GFR/CVC audit compliance.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
