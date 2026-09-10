@@ -522,41 +522,41 @@ export const ThreeDReadme: React.FC = () => {
           </div>
 
           {/* View Mode Toggle */}
-          <div className="flex items-center gap-1.5 bg-slate-800 p-1.5 rounded-xl border border-slate-700 shrink-0 text-xs font-semibold">
+          <div className="grid grid-cols-3 w-full sm:w-auto sm:flex sm:items-center gap-1 bg-slate-800 p-1.5 rounded-xl border border-slate-700 shrink-0 text-xs font-semibold">
             <button
               onClick={() => setViewMode('3d')}
-              className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition cursor-pointer ${
+              className={`px-2.5 sm:px-3 py-2 sm:py-1.5 rounded-lg flex items-center justify-center gap-1.5 transition cursor-pointer touch-target ${
                 viewMode === '3d'
                   ? 'bg-indigo-600 text-white shadow-sm'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              <Boxes className="w-4 h-4" />
-              <span>3D Holographic Model</span>
+              <Boxes className="w-4 h-4 shrink-0" />
+              <span>3D Hologram</span>
             </button>
 
             <button
               onClick={() => setViewMode('cards')}
-              className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition cursor-pointer ${
+              className={`px-2.5 sm:px-3 py-2 sm:py-1.5 rounded-lg flex items-center justify-center gap-1.5 transition cursor-pointer touch-target ${
                 viewMode === 'cards'
                   ? 'bg-indigo-600 text-white shadow-sm'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              <Layers className="w-4 h-4" />
-              <span>3D Perspective Cards</span>
+              <Layers className="w-4 h-4 shrink-0" />
+              <span>Cards</span>
             </button>
 
             <button
               onClick={() => setViewMode('markdown')}
-              className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition cursor-pointer ${
+              className={`px-2.5 sm:px-3 py-2 sm:py-1.5 rounded-lg flex items-center justify-center gap-1.5 transition cursor-pointer touch-target ${
                 viewMode === 'markdown'
                   ? 'bg-indigo-600 text-white shadow-sm'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              <BookOpen className="w-4 h-4" />
-              <span>Full README & Specs</span>
+              <BookOpen className="w-4 h-4 shrink-0" />
+              <span>Docs</span>
             </button>
           </div>
         </div>
@@ -630,22 +630,22 @@ export const ThreeDReadme: React.FC = () => {
             {/* Canvas Mount */}
             <div
               ref={mountRef}
-              className="w-full h-[460px] cursor-grab active:cursor-grabbing relative"
+              className="w-full h-[280px] sm:h-[400px] md:h-[460px] cursor-grab active:cursor-grabbing relative touch-none"
             >
               {/* Overlay Prompt */}
               <div className="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-xs border border-slate-800 px-3 py-1.5 rounded-lg text-[11px] text-slate-300 pointer-events-none flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                <span>Click any 3D node to inspect "Why We Use This"</span>
+                <span>Click any 3D node to inspect</span>
               </div>
 
               {/* Instructions Pill */}
-              <div className="absolute bottom-3 right-3 bg-slate-900/80 backdrop-blur-xs border border-slate-800 px-3 py-1 rounded-lg text-[10px] text-slate-400 pointer-events-none">
-                Drag to orbit • Interactive WebGL
+              <div className="absolute bottom-3 right-3 bg-slate-900/80 backdrop-blur-xs border border-slate-800 px-2.5 py-1 rounded-lg text-[10px] text-slate-400 pointer-events-none">
+                Touch / drag to rotate
               </div>
             </div>
 
             {/* Quick Nodes Ribbon */}
-            <div className="p-3 bg-slate-900/90 border-t border-slate-800 flex items-center gap-2 overflow-x-auto text-[11px]">
+            <div className="p-2.5 sm:p-3 bg-slate-900/90 border-t border-slate-800 flex items-center gap-2 overflow-x-auto text-[11px] touch-scroll">
               <span className="text-slate-400 font-semibold shrink-0">
                 Nodes:
               </span>
@@ -653,7 +653,7 @@ export const ThreeDReadme: React.FC = () => {
                 <button
                   key={item.id}
                   onClick={() => setSelectedTech(item)}
-                  className={`px-2.5 py-1 rounded-md font-medium whitespace-nowrap transition cursor-pointer flex items-center gap-1.5 ${
+                  className={`px-2.5 py-1 rounded-lg font-medium whitespace-nowrap transition cursor-pointer flex items-center gap-1.5 touch-target ${
                     selectedTech.id === item.id
                       ? 'bg-white text-slate-900 font-bold shadow-xs'
                       : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
@@ -670,7 +670,7 @@ export const ThreeDReadme: React.FC = () => {
           </div>
 
           {/* Detailed Justification Card for Selected 3D Node */}
-          <div className="lg:col-span-5 bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-5">
+          <div className="lg:col-span-5 bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6 space-y-4 sm:space-y-5">
             <div className="flex items-start justify-between gap-3 border-b border-slate-100 pb-4">
               <div>
                 <div className="flex items-center gap-2 flex-wrap mb-1">

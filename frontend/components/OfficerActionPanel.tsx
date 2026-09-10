@@ -25,28 +25,28 @@ export const OfficerActionPanel: React.FC<OfficerActionPanelProps> = ({
         </p>
       </div>
 
-      <div className="flex items-center gap-2.5 flex-wrap">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 w-full md:w-auto md:flex md:items-center">
         <button
           onClick={() => onTriggerAction('QUALIFY')}
-          className="px-4 py-2.5 rounded-lg font-bold text-xs bg-emerald-600 hover:bg-emerald-700 text-white transition flex items-center gap-1.5 cursor-pointer shadow-sm"
+          className="px-4 py-3 sm:py-2.5 rounded-xl font-bold text-xs bg-emerald-600 hover:bg-emerald-700 active:scale-98 text-white transition flex items-center justify-center gap-2 cursor-pointer shadow-sm touch-target"
         >
-          <CheckCircle2 className="w-4 h-4" />
+          <CheckCircle2 className="w-4 h-4 shrink-0" />
           <span>Approve & Qualify</span>
         </button>
 
         <button
           onClick={() => onTriggerAction('CLARIFICATION')}
-          className="px-4 py-2.5 rounded-lg font-bold text-xs bg-amber-600 hover:bg-amber-700 text-white transition flex items-center gap-1.5 cursor-pointer shadow-sm"
+          className="px-4 py-3 sm:py-2.5 rounded-xl font-bold text-xs bg-amber-600 hover:bg-amber-700 active:scale-98 text-white transition flex items-center justify-center gap-2 cursor-pointer shadow-sm touch-target"
         >
-          <AlertTriangle className="w-4 h-4" />
+          <AlertTriangle className="w-4 h-4 shrink-0" />
           <span>Seek Clarification</span>
         </button>
 
         <button
           onClick={() => onTriggerAction('DISQUALIFY')}
-          className="px-4 py-2.5 rounded-lg font-bold text-xs bg-rose-600 hover:bg-rose-700 text-white transition flex items-center gap-1.5 cursor-pointer shadow-sm"
+          className="px-4 py-3 sm:py-2.5 rounded-xl font-bold text-xs bg-rose-600 hover:bg-rose-700 active:scale-98 text-white transition flex items-center justify-center gap-2 cursor-pointer shadow-sm touch-target"
         >
-          <XCircle className="w-4 h-4" />
+          <XCircle className="w-4 h-4 shrink-0" />
           <span>Reject / Disqualify</span>
         </button>
       </div>

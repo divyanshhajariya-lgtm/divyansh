@@ -28,9 +28,9 @@ export const BidderSelectorCarousel: React.FC<BidderSelectorCarouselProps> = ({
             <div
               key={b.id}
               onClick={() => onSelectBid(b.id)}
-              className={`p-3 rounded-lg border text-xs cursor-pointer transition flex items-center justify-between gap-3 ${
+              className={`p-3 rounded-xl border text-xs cursor-pointer transition flex items-center justify-between gap-3 active:scale-[0.98] select-none touch-target ${
                 isSelected
-                  ? 'border-indigo-600 bg-indigo-50/70 ring-1 ring-indigo-600/30'
+                  ? 'border-indigo-600 bg-indigo-50/80 ring-2 ring-indigo-500/20 shadow-xs'
                   : 'border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50'
               }`}
             >

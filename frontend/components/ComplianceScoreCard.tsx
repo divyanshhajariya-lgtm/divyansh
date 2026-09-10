@@ -105,22 +105,22 @@ export const ComplianceScoreCard: React.FC<Props> = ({
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between sm:justify-end gap-2.5 w-full sm:w-auto">
           <button
             id="reverify-btn"
             onClick={onTriggerReverify}
             disabled={isVerifying}
-            className="px-3.5 py-2 text-xs font-semibold rounded-lg border border-slate-300 hover:bg-slate-50 text-slate-700 transition flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+            className="flex-1 sm:flex-none px-3.5 py-2.5 text-xs font-semibold rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 transition flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50 touch-target"
           >
             <Sparkles
               className={`w-3.5 h-3.5 text-indigo-600 ${
                 isVerifying ? 'animate-spin' : ''
               }`}
             />
-            {isVerifying ? 'Re-verifying...' : 'Re-verify Registries'}
+            <span>{isVerifying ? 'Re-verifying...' : 'Re-verify Registries'}</span>
           </button>
           <div
-            className={`px-3.5 py-1.5 rounded-lg border flex items-center gap-2 ${riskConfig.bg}`}
+            className={`px-3 py-2 sm:px-3.5 sm:py-1.5 rounded-xl border flex items-center justify-center gap-2 shrink-0 touch-target ${riskConfig.bg}`}
           >
             <Icon className="w-4 h-4 shrink-0" />
             <span className="text-xs font-bold uppercase tracking-wide">

@@ -88,29 +88,29 @@ export const BidderSubmissionModal: React.FC<Props> = ({
 
   return (
     <>
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4 overflow-y-auto">
-        <div className="bg-white rounded-2xl shadow-xl border border-slate-200 w-full max-w-2xl overflow-hidden my-8 animate-in fade-in zoom-in-95 duration-200">
-          <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 p-5 text-white flex items-center justify-between">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-3 sm:p-4 overflow-y-auto">
+        <div className="bg-white rounded-2xl shadow-xl border border-slate-200 w-full max-w-2xl max-h-[92vh] flex flex-col overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200">
+          <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 p-4 sm:p-5 text-white flex items-center justify-between shrink-0">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-indigo-500/20 flex items-center justify-center border border-indigo-400/30">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-indigo-500/20 flex items-center justify-center border border-indigo-400/30 shrink-0">
                 <FileUp className="w-5 h-5 text-indigo-300" />
               </div>
               <div>
-                <div className="text-xs uppercase font-bold tracking-wider text-indigo-300">
+                <div className="text-[10px] sm:text-xs uppercase font-bold tracking-wider text-indigo-300">
                   GeM Bidder Ingestion Gateway
                 </div>
-                <h3 className="text-lg font-bold">Submit Tender Bid Package</h3>
+                <h3 className="text-base sm:text-lg font-bold">Submit Tender Bid Package</h3>
               </div>
             </div>
             <button
               onClick={onClose}
-              className="text-white/70 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition cursor-pointer"
+              className="text-white/70 hover:text-white p-2 rounded-lg hover:bg-white/10 transition cursor-pointer touch-target"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
 
-          <form onSubmit={handleSubmit} className="p-6 space-y-4 text-xs">
+          <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4 text-xs overflow-y-auto touch-scroll flex-1">
             {/* Tender context banner */}
             <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between">
               <div>
@@ -121,14 +121,14 @@ export const BidderSubmissionModal: React.FC<Props> = ({
                   Procurement of High Pressure Cryogenic Valves - CPCL Manali Refinery
                 </p>
               </div>
-              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-100 text-indigo-800">
+              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-100 text-indigo-800 shrink-0">
                 MoPNG CPCL
               </span>
             </div>
 
             {/* DigiLocker Trigger Card */}
             <div
-              className={`p-4 rounded-xl border transition-all ${
+              className={`p-3.5 sm:p-4 rounded-xl border transition-all ${
                 digiLockerAuthenticated
                   ? 'bg-emerald-50 border-emerald-300 text-emerald-950'
                   : 'bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200 text-slate-900'
@@ -137,7 +137,7 @@ export const BidderSubmissionModal: React.FC<Props> = ({
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
                   <div
-                    className={`w-9 h-9 rounded-lg flex items-center justify-center ${
+                    className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${
                       digiLockerAuthenticated
                         ? 'bg-emerald-600 text-white'
                         : 'bg-blue-600 text-white'
@@ -162,14 +162,14 @@ export const BidderSubmissionModal: React.FC<Props> = ({
                 <button
                   type="button"
                   onClick={() => setShowDigiLockerModal(true)}
-                  className={`px-3.5 py-2 rounded-lg font-bold text-xs shadow-xs transition cursor-pointer shrink-0 ${
+                  className={`w-full sm:w-auto px-4 py-2.5 sm:py-2 rounded-xl font-bold text-xs shadow-xs transition cursor-pointer shrink-0 text-center touch-target ${
                     digiLockerAuthenticated
                       ? 'bg-emerald-700 text-white hover:bg-emerald-800'
                       : 'bg-blue-600 hover:bg-blue-700 text-white'
                   }`}
                 >
                   {digiLockerAuthenticated
-                    ? 'Verified (Click to Re-connect)'
+                    ? 'Verified (Re-connect)'
                     : 'Connect DigiLocker'}
                 </button>
               </div>
@@ -186,7 +186,7 @@ export const BidderSubmissionModal: React.FC<Props> = ({
                   required
                   value={bidderName}
                   onChange={(e) => setBidderName(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-3.5 py-2.5 sm:py-2 bg-slate-50 border border-slate-300 rounded-xl text-base sm:text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 touch-target"
                 />
               </div>
 
@@ -199,7 +199,7 @@ export const BidderSubmissionModal: React.FC<Props> = ({
                   required
                   value={gstin}
                   onChange={(e) => setGstin(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 font-mono"
+                  className="w-full px-3.5 py-2.5 sm:py-2 bg-slate-50 border border-slate-300 rounded-xl text-base sm:text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 font-mono touch-target"
                 />
               </div>
 
@@ -212,7 +212,7 @@ export const BidderSubmissionModal: React.FC<Props> = ({
                   required
                   value={pan}
                   onChange={(e) => setPan(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 font-mono"
+                  className="w-full px-3.5 py-2.5 sm:py-2 bg-slate-50 border border-slate-300 rounded-xl text-base sm:text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 font-mono touch-target"
                 />
               </div>
 
@@ -225,7 +225,7 @@ export const BidderSubmissionModal: React.FC<Props> = ({
                   required
                   value={cin}
                   onChange={(e) => setCin(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 font-mono"
+                  className="w-full px-3.5 py-2.5 sm:py-2 bg-slate-50 border border-slate-300 rounded-xl text-base sm:text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 font-mono touch-target"
                 />
               </div>
 
@@ -236,7 +236,7 @@ export const BidderSubmissionModal: React.FC<Props> = ({
                 <select
                   value={enterpriseCategory}
                   onChange={(e: any) => setEnterpriseCategory(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-3.5 py-2.5 sm:py-2 bg-slate-50 border border-slate-300 rounded-xl text-base sm:text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 touch-target"
                 >
                   <option value="Micro">Micro Enterprise (EMD Exempt)</option>
                   <option value="Small">Small Enterprise (EMD Exempt)</option>
@@ -255,7 +255,7 @@ export const BidderSubmissionModal: React.FC<Props> = ({
                   value={udyamNumber}
                   onChange={(e) => setUdyamNumber(e.target.value)}
                   placeholder="UDYAM-TN-02-0000000"
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 font-mono"
+                  className="w-full px-3.5 py-2.5 sm:py-2 bg-slate-50 border border-slate-300 rounded-xl text-base sm:text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 font-mono touch-target"
                 />
               </div>
 
@@ -268,7 +268,7 @@ export const BidderSubmissionModal: React.FC<Props> = ({
                   required
                   value={quotedValueINR}
                   onChange={(e) => setQuotedValueINR(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 font-mono"
+                  className="w-full px-3.5 py-2.5 sm:py-2 bg-slate-50 border border-slate-300 rounded-xl text-base sm:text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 font-mono touch-target"
                 />
               </div>
 
@@ -283,25 +283,25 @@ export const BidderSubmissionModal: React.FC<Props> = ({
                   required
                   value={localContentPercent}
                   onChange={(e) => setLocalContentPercent(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 font-mono"
+                  className="w-full px-3.5 py-2.5 sm:py-2 bg-slate-50 border border-slate-300 rounded-xl text-base sm:text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 font-mono touch-target"
                 />
               </div>
             </div>
 
-            <div className="pt-3 flex items-center justify-end gap-3 border-t border-slate-100">
+            <div className="pt-3 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2.5 border-t border-slate-100">
               <button
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2 font-semibold text-slate-600 hover:text-slate-800 cursor-pointer"
+                className="py-2.5 px-4 font-semibold text-slate-600 hover:text-slate-800 cursor-pointer text-center touch-target"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg shadow-sm flex items-center gap-2 cursor-pointer disabled:opacity-50"
+                className="w-full sm:w-auto py-3 sm:py-2.5 px-5 bg-indigo-600 hover:bg-indigo-700 active:scale-98 text-white font-bold rounded-xl shadow-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 touch-target"
               >
-                <Sparkles className="w-4 h-4" />
+                <Sparkles className="w-4 h-4 shrink-0" />
                 <span>
                   {isSubmitting
                     ? 'Ingesting & Verifying...'

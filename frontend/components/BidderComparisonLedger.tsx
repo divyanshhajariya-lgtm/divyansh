@@ -25,7 +25,8 @@ export const BidderComparisonLedger: React.FC<BidderComparisonLedgerProps> = ({
         </div>
       </div>
 
-      <div className="overflow-x-auto">
+      {/* Desktop / Tablet Table (md+) */}
+      <div className="hidden md:block overflow-x-auto">
         <table className="w-full text-left border-collapse text-xs">
           <thead>
             <tr className="bg-slate-50 text-[11px] uppercase font-bold text-slate-500 border-b border-slate-200">
@@ -100,7 +101,7 @@ export const BidderComparisonLedger: React.FC<BidderComparisonLedgerProps> = ({
                 <td className="py-3.5 px-4 text-right">
                   <button
                     onClick={() => onInspectBid(b.id)}
-                    className="px-3 py-1 bg-slate-900 hover:bg-slate-800 text-white rounded-md text-[11px] font-semibold transition cursor-pointer"
+                    className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-md text-[11px] font-semibold transition cursor-pointer"
                   >
                     Inspect
                   </button>
@@ -109,6 +110,86 @@ export const BidderComparisonLedger: React.FC<BidderComparisonLedgerProps> = ({
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* Mobile Bidder Cards View (xs/sm) */}
+      <div className="block md:hidden divide-y divide-slate-100">
+        {bids.map((b) => (
+          <div key={b.id} className="p-4 space-y-3 bg-white">
+            <div className="flex items-start justify-between gap-2">
+              <div>
+                <h4 className="font-bold text-sm text-slate-900 leading-tight">
+                  {b.bidderName}
+                </h4>
+                <div className="text-[10px] font-mono text-slate-500 mt-0.5">
+                  ID: {b.id} • GST: {b.gstin.slice(0, 10)}...
+                </div>
+              </div>
+              <div className="flex flex-col items-end shrink-0">
+                <span
+                  className={`px-2.5 py-0.5 rounded-full font-extrabold text-xs inline-block ${
+                    b.riskLevel === 'LOW'
+                      ? 'bg-emerald-100 text-emerald-800'
+                      : b.riskLevel === 'MEDIUM'
+                      ? 'bg-amber-100 text-amber-800'
+                      : 'bg-rose-100 text-rose-800'
+                  }`}
+                >
+                  {b.complianceScore}/100
+                </span>
+                <span
+                  className={`text-[9px] font-bold mt-0.5 ${
+                    b.status === 'QUALIFIED' || b.status === 'AI_RECOMMENDED'
+                      ? 'text-emerald-700'
+                      : b.status === 'DISQUALIFIED'
+                      ? 'text-rose-700'
+                      : 'text-amber-700'
+                  }`}
+                >
+                  {b.status.replace('_', ' ')}
+                </span>
+              </div>
+            </div>
+
+            {/* Metrics Chips */}
+            <div className="grid grid-cols-3 gap-2 text-center text-xs">
+              <div className="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                <span className="text-[10px] text-slate-400 block font-medium">
+                  Quote
+                </span>
+                <span className="font-bold text-slate-900 font-mono text-xs">
+                  ₹{(b.quotedValueINR / 100000).toFixed(1)}L
+                </span>
+              </div>
+
+              <div className="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                <span className="text-[10px] text-slate-400 block font-medium">
+                  MSME Tier
+                </span>
+                <span className="font-semibold text-slate-800 text-xs truncate block">
+                  {b.enterpriseCategory}
+                </span>
+              </div>
+
+              <div className="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                <span className="text-[10px] text-slate-400 block font-medium">
+                  MII Content
+                </span>
+                <span className="font-semibold text-slate-800 text-xs">
+                  {b.localContentPercent}%
+                </span>
+              </div>
+            </div>
+
+            {/* Inspect Button */}
+            <button
+              onClick={() => onInspectBid(b.id)}
+              className="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition flex items-center justify-center cursor-pointer touch-target active:scale-98"
+            >
+              Inspect Bidder Dossier
+            </button>
+          </div>
+        ))}
       </div>
     </div>
   );

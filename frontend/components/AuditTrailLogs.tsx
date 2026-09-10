@@ -98,11 +98,11 @@ export const AuditTrailLogs: React.FC<AuditTrailLogsProps> = ({ logs }) => {
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
           <select
             value={filterAction}
             onChange={(e) => setFilterAction(e.target.value)}
-            className="px-3 py-1.5 bg-slate-50 border border-slate-300 rounded-lg text-xs font-medium text-slate-700 focus:outline-none"
+            className="px-3 py-2.5 sm:py-1.5 bg-slate-50 border border-slate-300 rounded-xl text-base sm:text-xs font-medium text-slate-700 focus:outline-none touch-target"
           >
             <option value="ALL">All Actions</option>
             <option value="INGESTION">Ingestion</option>
@@ -114,10 +114,10 @@ export const AuditTrailLogs: React.FC<AuditTrailLogsProps> = ({ logs }) => {
 
           <button
             onClick={exportAuditJSON}
-            className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-bold flex items-center gap-1.5 transition cursor-pointer"
+            className="px-3 py-2.5 sm:py-1.5 bg-slate-900 hover:bg-slate-800 active:scale-98 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition cursor-pointer touch-target"
           >
             <Download className="w-3.5 h-3.5" />
-            Export Audit Ledger
+            <span>Export Audit Ledger</span>
           </button>
         </div>
       </div>

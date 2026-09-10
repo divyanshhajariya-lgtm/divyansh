@@ -77,35 +77,35 @@ export const DigiLockerConnectModal: React.FC<Props> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4">
-      <div className="bg-white rounded-2xl shadow-xl border border-slate-200 w-full max-w-lg overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-3 sm:p-4 overflow-y-auto">
+      <div className="bg-white rounded-2xl shadow-xl border border-slate-200 w-full max-w-lg max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
         {/* DigiLocker Header with Indian e-Gov colors */}
-        <div className="bg-gradient-to-r from-blue-700 via-indigo-700 to-blue-800 p-5 text-white flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-700 via-indigo-700 to-blue-800 p-4 sm:p-5 text-white flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center border border-white/20">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/10 flex items-center justify-center border border-white/20 shrink-0">
               <Lock className="w-5 h-5 text-blue-200" />
             </div>
             <div>
-              <div className="text-xs uppercase font-bold tracking-wider text-blue-200 flex items-center gap-1.5">
+              <div className="text-[10px] sm:text-xs uppercase font-bold tracking-wider text-blue-200 flex items-center gap-1.5">
                 <span>Govt of India</span>
                 <span>•</span>
                 <span>Digital India Initiative</span>
               </div>
-              <h3 className="text-lg font-bold">
-                DigiLocker Direct Verification Gateway
+              <h3 className="text-base sm:text-lg font-bold">
+                DigiLocker Verification Gateway
               </h3>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="text-white/70 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition cursor-pointer"
+            className="text-white/70 hover:text-white p-2 rounded-lg hover:bg-white/10 transition cursor-pointer touch-target"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Modal Content */}
-        <div className="p-6">
+        <div className="p-4 sm:p-6 overflow-y-auto touch-scroll flex-1">
           {step === 'auth' && (
             <div className="space-y-4">
               <div className="p-3.5 bg-blue-50/80 rounded-xl border border-blue-200 text-xs text-blue-900 leading-relaxed">
@@ -158,11 +158,11 @@ export const DigiLockerConnectModal: React.FC<Props> = ({
                 </div>
               )}
 
-              <div className="pt-2 flex items-center justify-end gap-3">
+              <div className="pt-2 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2.5">
                 <button
                   type="button"
                   onClick={onClose}
-                  className="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-800"
+                  className="py-2.5 px-4 text-xs font-semibold text-slate-600 hover:text-slate-800 text-center touch-target"
                 >
                   Cancel
                 </button>
@@ -170,7 +170,7 @@ export const DigiLockerConnectModal: React.FC<Props> = ({
                   type="button"
                   onClick={handleAuthenticate}
                   disabled={loading}
-                  className="px-5 py-2.5 text-xs font-bold rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm flex items-center gap-2 cursor-pointer disabled:opacity-50"
+                  className="py-3 sm:py-2.5 px-5 text-xs font-bold rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-98 text-white shadow-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 touch-target"
                 >
                   <span>Authenticate via DigiLocker</span>
                   <ArrowRight className="w-3.5 h-3.5" />

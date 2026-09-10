@@ -33,9 +33,9 @@ export const OfficerDecisionBanner: React.FC<OfficerDecisionBannerProps> = ({
         </p>
       </div>
 
-      <div className="shrink-0 text-right font-mono text-[11px] text-slate-600 bg-white/70 px-3 py-1.5 rounded-lg border border-slate-200">
-        <span>Audit Hash:</span>
-        <div className="font-bold">{decision.auditHash.slice(0, 16)}...</div>
+      <div className="shrink-0 text-left sm:text-right font-mono text-[11px] text-slate-600 bg-white/70 px-3 py-1.5 rounded-lg border border-slate-200 self-start sm:self-auto w-full sm:w-auto">
+        <span className="text-[10px] uppercase font-bold text-slate-500 block sm:inline">Audit Hash: </span>
+        <span className="font-bold break-all">{decision.auditHash.slice(0, 16)}...</span>
       </div>
     </div>
   );

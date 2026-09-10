@@ -43,11 +43,11 @@ export const RiskAnalyticsCharts: React.FC<Props> = ({ bids }) => {
   return (
     <div
       id="risk-analytics-charts"
-      className="grid grid-cols-1 lg:grid-cols-12 gap-5"
+      className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5"
     >
       {/* Bid Score Comparison Chart */}
-      <div className="lg:col-span-8 bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-        <div className="flex items-center justify-between mb-4">
+      <div className="lg:col-span-8 bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
           <div>
             <h4 className="text-sm font-bold text-slate-900">
               Bidder Compliance Score vs Risk Index
@@ -56,12 +56,12 @@ export const RiskAnalyticsCharts: React.FC<Props> = ({ bids }) => {
               Normalized score comparison across active bidders in tender GEM/2026/B/891273
             </p>
           </div>
-          <span className="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-700 rounded-md font-mono">
+          <span className="self-start sm:self-auto text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-700 rounded-lg font-mono">
             {bids.length} Evaluated Bids
           </span>
         </div>
 
-        <div className="h-64 w-full">
+        <div className="h-52 sm:h-64 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={barData}
@@ -122,7 +122,7 @@ export const RiskAnalyticsCharts: React.FC<Props> = ({ bids }) => {
       </div>
 
       {/* Risk Tier Distribution Pie Chart */}
-      <div className="lg:col-span-4 bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+      <div className="lg:col-span-4 bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
         <div>
           <h4 className="text-sm font-bold text-slate-900">
             Risk Categorization Spread

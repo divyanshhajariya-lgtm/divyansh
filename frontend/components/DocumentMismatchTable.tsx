@@ -101,8 +101,8 @@ export const DocumentMismatchTable: React.FC<Props> = ({
         </div>
       </div>
 
-      {/* Verification Table */}
-      <div className="overflow-x-auto">
+      {/* Verification Table - Visible on Desktop / Tablet (md+) */}
+      <div className="hidden md:block overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-slate-50/80 border-b border-slate-200 text-[11px] font-bold uppercase tracking-wider text-slate-500">
@@ -218,6 +218,95 @@ export const DocumentMismatchTable: React.FC<Props> = ({
             })}
           </tbody>
         </table>
+      </div>
+
+      {/* Mobile Card-Based Verification List - Shown on Mobile (xs/sm) */}
+      <div className="block md:hidden divide-y divide-slate-100">
+        {filteredParams.map((param) => {
+          const isExpanded = expandedRow === param.id;
+          return (
+            <div
+              key={param.id}
+              className={`p-4 transition ${
+                param.status === 'FAILED'
+                  ? 'bg-rose-50/25'
+                  : param.status === 'WARNING'
+                  ? 'bg-amber-50/25'
+                  : 'bg-white'
+              }`}
+            >
+              {/* Header: Title & Status */}
+              <div className="flex items-start justify-between gap-2 mb-2.5">
+                <div>
+                  <h4 className="font-bold text-sm text-slate-900 leading-tight">
+                    {param.parameter}
+                  </h4>
+                  <div className="flex items-center gap-1.5 flex-wrap mt-1 text-[11px]">
+                    <span className="text-indigo-600 font-semibold">
+                      {param.domain}
+                    </span>
+                    {param.digiLockerSigned && (
+                      <span className="text-[10px] bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded border border-blue-200 font-medium">
+                        DigiLocker Verified
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <div className="shrink-0">{getStatusBadge(param.status)}</div>
+              </div>
+
+              {/* Data Comparisons Cards */}
+              <div className="space-y-2 mt-3 text-xs">
+                {/* Official Live Source */}
+                <div className="bg-slate-50 rounded-lg p-2.5 border border-slate-200/80">
+                  <div className="text-[10px] font-bold uppercase text-slate-400 mb-1 flex items-center justify-between">
+                    <span>Official Live Record</span>
+                    <span className="text-indigo-600 normal-case font-semibold">
+                      {param.portalSource}
+                    </span>
+                  </div>
+                  <div className="font-semibold text-slate-800 break-words">
+                    {param.portalData}
+                  </div>
+                </div>
+
+                {/* Bidder Submission */}
+                <div className="bg-white rounded-lg p-2.5 border border-slate-200">
+                  <div className="text-[10px] font-bold uppercase text-slate-400 mb-1 flex items-center justify-between">
+                    <span>Bidder Submission</span>
+                    <span className="text-slate-500 font-mono text-[9px] truncate max-w-[140px]">
+                      {param.bidderDocName}
+                    </span>
+                  </div>
+                  <div className="text-slate-700 break-words">
+                    {param.bidderUploadData}
+                  </div>
+                </div>
+              </div>
+
+              {/* Discrepancy Note / Expandable Info */}
+              {param.discrepancyNote && (
+                <div className="mt-2.5 p-2.5 bg-amber-50 rounded-lg border border-amber-200 text-xs text-amber-900 flex items-start gap-1.5">
+                  <AlertTriangle className="w-3.5 h-3.5 text-amber-600 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-bold">Audit Finding: </span>
+                    <span>{param.discrepancyNote}</span>
+                  </div>
+                </div>
+              )}
+
+              {/* Footer Weight & Hash */}
+              <div className="flex items-center justify-between mt-2.5 pt-2 border-t border-slate-100 text-[10px] text-slate-400 font-mono">
+                <span>Weight: {(param.weight * 100).toFixed(0)}%</span>
+                {param.sha256Hash && (
+                  <span className="truncate max-w-[160px]">
+                    Hash: {param.sha256Hash.slice(0, 12)}...
+                  </span>
+                )}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

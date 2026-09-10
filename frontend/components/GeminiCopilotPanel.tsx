@@ -125,12 +125,12 @@ export const GeminiCopilotPanel: React.FC<Props> = ({ activeBid }) => {
   return (
     <div
       id="gemini-copilot-panel"
-      className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col h-[740px]"
+      className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col h-[calc(100vh-210px)] min-h-[520px] md:h-[740px]"
     >
       {/* Copilot Header */}
-      <div className="bg-slate-900 text-white p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div className="bg-slate-900 text-white p-3.5 sm:p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-indigo-600/30 border border-indigo-400/40 flex items-center justify-center">
+          <div className="w-9 h-9 rounded-xl bg-indigo-600/30 border border-indigo-400/40 flex items-center justify-center shrink-0">
             <Bot className="w-5 h-5 text-indigo-300" />
           </div>
           <div>
@@ -142,21 +142,20 @@ export const GeminiCopilotPanel: React.FC<Props> = ({ activeBid }) => {
                 Multi-Turn Active
               </span>
             </div>
-            <p className="text-[11px] text-slate-400">
-              Procurement & CVC compliance assistant assisting evaluation of{' '}
-              {activeBid.bidderName}
+            <p className="text-[11px] text-slate-400 truncate max-w-xs sm:max-w-md">
+              Procurement & CVC compliance assistant evaluating {activeBid.bidderName}
             </p>
           </div>
         </div>
 
         {/* Intelligence Mode Pills */}
-        <div className="flex items-center gap-1 bg-slate-800 p-1 rounded-lg text-xs">
+        <div className="flex items-center gap-1 bg-slate-800 p-1 rounded-lg text-xs overflow-x-auto touch-scroll w-full sm:w-auto scrollbar-none">
           <button
             onClick={() => {
               setAiMode('pro-thinking');
               runDeepEvaluation('pro-thinking');
             }}
-            className={`px-2.5 py-1 rounded font-medium flex items-center gap-1.5 transition cursor-pointer ${
+            className={`px-2.5 py-1.5 rounded-md font-medium flex items-center gap-1.5 transition cursor-pointer whitespace-nowrap touch-target ${
               aiMode === 'pro-thinking'
                 ? 'bg-indigo-600 text-white shadow-xs'
                 : 'text-slate-400 hover:text-white'
@@ -172,7 +171,7 @@ export const GeminiCopilotPanel: React.FC<Props> = ({ activeBid }) => {
               setAiMode('fast-scan');
               runDeepEvaluation('fast-scan');
             }}
-            className={`px-2.5 py-1 rounded font-medium flex items-center gap-1.5 transition cursor-pointer ${
+            className={`px-2.5 py-1.5 rounded-md font-medium flex items-center gap-1.5 transition cursor-pointer whitespace-nowrap touch-target ${
               aiMode === 'fast-scan'
                 ? 'bg-indigo-600 text-white shadow-xs'
                 : 'text-slate-400 hover:text-white'
@@ -188,15 +187,15 @@ export const GeminiCopilotPanel: React.FC<Props> = ({ activeBid }) => {
               setAiMode('grounded-search');
               runDeepEvaluation('grounded-search');
             }}
-            className={`px-2.5 py-1 rounded font-medium flex items-center gap-1.5 transition cursor-pointer ${
+            className={`px-2.5 py-1.5 rounded-md font-medium flex items-center gap-1.5 transition cursor-pointer whitespace-nowrap touch-target ${
               aiMode === 'grounded-search'
                 ? 'bg-indigo-600 text-white shadow-xs'
                 : 'text-slate-400 hover:text-white'
             }`}
-            title="Google Search Grounding (gemini-3.5-flash with googleSearch tool)"
+            title="Live Google Search Grounding"
           >
             <Globe className="w-3.5 h-3.5 text-emerald-300" />
-            <span>Search Grounded</span>
+            <span>Live Grounding</span>
           </button>
         </div>
       </div>
@@ -329,8 +328,8 @@ export const GeminiCopilotPanel: React.FC<Props> = ({ activeBid }) => {
       </div>
 
       {/* Suggested Quick Action Chips */}
-      <div className="p-2.5 bg-slate-50 border-t border-slate-200 flex items-center gap-1.5 overflow-x-auto text-[11px]">
-        <span className="font-semibold text-slate-500 whitespace-nowrap pl-1">
+      <div className="p-2.5 bg-slate-50 border-t border-slate-200 flex items-center gap-1.5 overflow-x-auto touch-scroll scrollbar-none text-[11px]">
+        <span className="font-semibold text-slate-500 whitespace-nowrap pl-1 shrink-0">
           Officer Prompts:
         </span>
         <button
@@ -339,7 +338,7 @@ export const GeminiCopilotPanel: React.FC<Props> = ({ activeBid }) => {
               `Draft a formal 48-hour clarification notice for ${activeBid.bidderName} regarding their Make in India and EPFO parameters under GFR 2017 Rule 173.`
             )
           }
-          className="px-2.5 py-1 bg-white hover:bg-slate-100 border border-slate-200 rounded-md text-slate-700 whitespace-nowrap transition cursor-pointer"
+          className="px-2.5 py-1.5 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-700 whitespace-nowrap transition cursor-pointer shrink-0 touch-target"
         >
           Draft 48-Hour Clarification Notice
         </button>
@@ -349,7 +348,7 @@ export const GeminiCopilotPanel: React.FC<Props> = ({ activeBid }) => {
               `What are the CVC guidelines on evaluating minor statutory delays in EPFO remittances vs disqualification?`
             )
           }
-          className="px-2.5 py-1 bg-white hover:bg-slate-100 border border-slate-200 rounded-md text-slate-700 whitespace-nowrap transition cursor-pointer"
+          className="px-2.5 py-1.5 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-700 whitespace-nowrap transition cursor-pointer shrink-0 touch-target"
         >
           Check CVC Rule on EPFO Gaps
         </button>
@@ -359,26 +358,28 @@ export const GeminiCopilotPanel: React.FC<Props> = ({ activeBid }) => {
               `Inspect whether ${activeBid.bidderName} qualifies as a Class-I Local Supplier for purchase preference in CPCL refinery tenders.`
             )
           }
-          className="px-2.5 py-1 bg-white hover:bg-slate-100 border border-slate-200 rounded-md text-slate-700 whitespace-nowrap transition cursor-pointer"
+          className="px-2.5 py-1.5 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-700 whitespace-nowrap transition cursor-pointer shrink-0 touch-target"
         >
           Verify MII Class-I Purchase Preference
         </button>
       </div>
 
       {/* Chat Input Box */}
-      <div className="p-3 bg-white border-t border-slate-200 flex items-center gap-2">
+      <div className="p-2.5 sm:p-3 bg-white border-t border-slate-200 flex items-center gap-2">
         <input
           type="text"
           value={inputMessage}
           onChange={(e) => setInputMessage(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
-          placeholder={`Ask GeM-Verify Copilot about ${activeBid.bidderName}, GFR 2017 rules, or debarment checks...`}
-          className="flex-1 px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          placeholder={`Ask GeM-Verify Copilot about ${activeBid.bidderName}, GFR 2017...`}
+          className="flex-1 px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-base sm:text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 touch-target"
         />
         <button
           onClick={() => handleSendMessage()}
           disabled={!inputMessage.trim() || isSending}
-          className="p-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl transition cursor-pointer disabled:opacity-50"
+          title="Send message to Copilot"
+          aria-label="Send"
+          className="p-2.5 min-w-[44px] min-h-[44px] bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white rounded-xl transition cursor-pointer disabled:opacity-50 flex items-center justify-center touch-target"
         >
           <Send className="w-4 h-4" />
         </button>
