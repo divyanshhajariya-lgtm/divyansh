@@ -26,6 +26,15 @@ export interface AuditLogEntry {
   timestamp: string;
 }
 
+export interface OfficerDecision {
+  action: 'CLARIFICATION' | 'DISQUALIFY' | 'QUALIFY';
+  auditHash: string;
+  officerDesignation: string;
+  officerName: string;
+  remarks: string;
+  timestamp: string;
+}
+
 export interface BidSubmission {
   cin: string;
   complianceScore: number;
@@ -52,14 +61,7 @@ export interface BidSubmission {
     | 'Class-I Local Supplier (>=50%)'
     | 'Class-II Local Supplier (20%-49%)'
     | 'Non-Local Supplier (<20%)';
-  officerDecision?: {
-    action: 'CLARIFICATION' | 'DISQUALIFY' | 'QUALIFY';
-    auditHash: string;
-    officerDesignation: string;
-    officerName: string;
-    remarks: string;
-    timestamp: string;
-  };
+  officerDecision?: OfficerDecision;
   pan: string;
   parameters: ParameterVerification[];
   quotedValueINR: number;

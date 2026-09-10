@@ -7,7 +7,7 @@ import {
   X,
   XCircle,
 } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BidSubmission } from '../types';
 
 interface Props {
@@ -19,6 +19,7 @@ interface Props {
     remarks: string,
     officerName: string
   ) => Promise<void>;
+  initialAction?: 'CLARIFICATION' | 'DISQUALIFY' | 'QUALIFY';
 }
 
 export const OfficerDecisionModal: React.FC<Props> = ({
@@ -26,18 +27,17 @@ export const OfficerDecisionModal: React.FC<Props> = ({
   isOpen,
   onClose,
   onConfirmDecision,
+  initialAction = 'QUALIFY',
 }) => {
   const [selectedAction, setSelectedAction] = useState<
     'CLARIFICATION' | 'DISQUALIFY' | 'QUALIFY'
-  >('QUALIFY');
+  >(initialAction);
   const [officerName, setOfficerName] = useState('R. Kalyanasundaram');
   const [officerDesignation, setOfficerDesignation] = useState(
     'Chief General Manager (Procurement), CPCL'
   );
   const [remarks, setRemarks] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  if (!isOpen) return null;
 
   // Auto-populate default template based on selected action
   const handleActionSelect = (
@@ -58,6 +58,19 @@ export const OfficerDecisionModal: React.FC<Props> = ({
       );
     }
   };
+
+  // Sync initial action and remarks on open
+  useEffect(() => {
+    if (isOpen) {
+      const actionToSet: 'CLARIFICATION' | 'DISQUALIFY' | 'QUALIFY' =
+        initialAction === 'DISQUALIFY' || initialAction === 'CLARIFICATION'
+          ? initialAction
+          : 'QUALIFY';
+      handleActionSelect(actionToSet);
+    }
+  }, [isOpen, initialAction, bid.id]);
+
+  if (!isOpen) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
